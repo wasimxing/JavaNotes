@@ -1,0 +1,183 @@
+1. Variables and Constants
+
+Variables:
+A variable is a container used to store data.
+Declaration: You need to declare a variable before using it.
+
+Syntax:
+dataType variableName;
+
+Example:
+int age; // Declaring an integer variable
+age = 25; // Assigning a value
+
+Initialization: A variable is initialized by assigning a value to it.
+Example:
+int age = 25; // Declaring and initializing in one line
+
+Constants:
+Constants are variables whose value cannot be changed after initialization.
+In Java, constants are declared using the final keyword.
+Syntax:
+final dataType constantName = value;
+
+Example:
+final int MAX_AGE = 100; // MAX_AGE cannot be changed
+
+2. Data Types in Java
+Java supports both Primitive and Non-Primitive data types.
+
+Primitive Data Types:
+These are predefined by Java and are the most basic types used to represent data.
+
+Data Type	Size	Description
+byte	1 byte	Stores 8-bit signed integer values
+short	2 bytes	Stores 16-bit signed integer values
+int	4 bytes	Stores 32-bit signed integer values
+long	8 bytes	Stores 64-bit signed integer values
+float	4 bytes	Stores 32-bit floating-point numbers
+double	8 bytes	Stores 64-bit floating-point numbers
+char	2 bytes	Stores a single 16-bit Unicode character
+boolean	1 byte	Stores true or false values
+Examples:
+int x = 10;  // 32-bit integer
+char c = 'A'; // Single character
+boolean flag = true; // Boolean value
+
+Non-Primitive (Reference) Data Types:
+These are objects and arrays. They are more complex than primitive types.
+
+String: A sequence of characters.
+Arrays: An ordered collection of data.
+Classes and Interfaces: These are user-defined data types.
+Examples:
+String name = "John"; // Non-primitive type
+int[] numbers = {1, 2, 3}; // Array of integers
+
+
+3. Type Casting
+Type casting allows you to convert one data type to another.
+
+1. Implicit (Automatic) Casting:
+When a smaller data type is automatically converted to a larger one. This is done by the Java compiler.
+
+Example:
+int x = 10;
+double y = x; // Implicit casting from int to double
+
+2. Explicit (Manual) Casting:
+When you need to manually convert a larger data type to a smaller one.
+
+Example:
+double x = 9.78;
+int y = (int) x; // Explicit casting from double to int (fractional part lost)
+
+4. Operators in Java
+Java operators are used to perform operations on variables and values. They are classified into several types:
+
+Arithmetic Operators
+Used for mathematical operations.
+
+Operator	Description	Example
++	Addition	a + b
+-	Subtraction	a - b
+*	Multiplication	a * b
+/	Division	a / b
+%	Modulus (Remainder)	a % b
+Example:
+
+java
+Copy
+Edit
+int a = 10, b = 5;
+System.out.println(a + b); // 15 (Addition)
+System.out.println(a / b); // 2  (Division)
+System.out.println(a % b); // 0  (Modulus)
+Relational Operators
+Used to compare two values. They return a boolean (true or false) based on the result.
+
+Operator	Description	Example
+==	Equal to	a == b
+!=	Not equal to	a != b
+>	Greater than	a > b
+<	Less than	a < b
+>=	Greater or equal	a >= b
+<=	Less or equal	a <= b
+Example:
+
+java
+Copy
+Edit
+int a = 10, b = 5;
+System.out.println(a > b);  // true
+System.out.println(a == b); // false
+Logical Operators
+Used for combining multiple boolean expressions.
+
+Operator	Description	Example
+&&	Logical AND	a && b
+`		`
+!	Logical NOT	!a
+Example:
+
+java
+Copy
+Edit
+boolean a = true, b = false;
+System.out.println(a && b);  // false (AND)
+System.out.println(a || b);  // true  (OR)
+System.out.println(!a);      // false (NOT)
+Assignment Operators
+Used to assign values to variables.
+
+Operator	Description	Example
+=	Assign	a = b
++=	Add and assign	a += b
+-=	Subtract and assign	a -= b
+*=	Multiply and assign	a *= b
+/=	Divide and assign	a /= b
+%=	Modulus and assign	a %= b
+Example:
+
+java
+Copy
+Edit
+int a = 10;
+a += 5;  // a = a + 5, now a = 15
+a /= 3;  // a = a / 3, now a = 5
+Bitwise Operators
+Used for operations on bits.
+
+Operator	Description	Example
+&	Bitwise AND	a & b
+`	`	Bitwise OR
+^	Bitwise XOR	a ^ b
+~	Bitwise NOT	~a
+<<	Left shift	a << 2
+>>	Right shift	a >> 2
+Unary Operators
+Operate on a single operand.
+
+Operator	Description	Example
++	Unary plus	+a
+-	Unary minus	-a
+++	Increment	a++
+--	Decrement	a--
+!	Logical NOT	!a
+Ternary Operator
+A shorthand for the if-else statement, used to assign a value based on a condition.
+
+Syntax:
+
+java
+Copy
+Edit
+condition ? value_if_true : value_if_false;
+Example:
+
+java
+Copy
+Edit
+int a = 10, b = 5;
+int result = (a > b) ? a : b; // result will be 10 because a is greater than b
+These concepts are foundational in Java, and once you are comfortable with them, you will be able to write efficient and clean Java programs. Let me know if you need further clarification!

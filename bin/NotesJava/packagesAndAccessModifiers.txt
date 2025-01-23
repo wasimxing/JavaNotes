@@ -1,0 +1,149 @@
+1. Creating and Using Packages
+A package is a namespace that groups related classes and interfaces. It helps in organizing classes and interfaces logically, making it easier to manage and maintain your codebase.
+
+Why Use Packages?
+Organization: Group classes logically.
+Avoiding Name Conflicts: Packages prevent naming conflicts between classes.
+Access Control: Packages allow controlled access to classes within the package.
+How to Create a Package:
+To create a package, you use the package keyword at the top of your Java file.
+
+Syntax:
+
+java
+Copy
+Edit
+package packageName;
+Example (Creating and Using a Package):
+Let's create a simple package com.example.animals.
+
+Create a Package:
+java
+Copy
+Edit
+// In file: Dog.java
+package com.example.animals;
+
+public class Dog {
+    public void sound() {
+        System.out.println("Barking...");
+    }
+}
+Using the Package:
+java
+Copy
+Edit
+// In file: Main.java
+import com.example.animals.Dog;  // Import the Dog class
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.sound();  // Prints "Barking..."
+    }
+}
+Important: Make sure your files are in the correct directory structure that reflects the package name. For example, Dog.java should be in the folder path com/example/animals/.
+
+2. Access Modifiers
+Java provides several access modifiers to control the visibility of classes, methods, and variables. These modifiers determine how accessible the members of a class are from other classes.
+
+There are four main access modifiers in Java:
+
+public: The class, method, or variable is accessible from anywhere (even from other packages).
+private: The method or variable is accessible only within the same class.
+protected: The method or variable is accessible within the same package and by subclasses (even if they are in different packages).
+default (no modifier): The method or variable is accessible only within the same package.
+Example (Access Modifiers):
+java
+Copy
+Edit
+class Animal {
+    public String name;      // Accessible from anywhere
+    private int age;         // Accessible only within this class
+    protected String color;  // Accessible within the same package and subclasses
+    String species;          // Default access modifier (accessible only within the same package)
+    
+    public void displayInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Color: " + color);
+        System.out.println("Species: " + species);
+    }
+}
+
+public class Dog extends Animal {
+    public void setInfo() {
+        name = "Dog";          // Accessible because it's public
+        age = 5;               // Not accessible because it's private in Animal class
+        color = "Brown";       // Accessible because it's protected
+        species = "Canine";    // Accessible because it's default (same package)
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal animal = new Animal();
+        animal.name = "Elephant";  // Accessible because it's public
+        // animal.age = 10;        // Not accessible because it's private
+        animal.color = "Grey";     // Accessible because it's protected within the same package
+        animal.species = "Mammal"; // Accessible because it's default in the same package
+    }
+}
+Explanation of Access Modifiers:
+public: The name variable and displayInfo() method are public, so they can be accessed from any other class.
+private: The age variable is private, meaning it can't be accessed directly from outside the Animal class.
+protected: The color variable is protected, meaning it can be accessed within the same package and by subclasses (even if they are in different packages).
+default (no modifier): The species variable has default access, so it can only be accessed from classes within the same package.
+3. The import Statement
+The import statement allows us to bring specific classes or entire packages into our code so we can use them without needing to reference their fully qualified name.
+
+Importing a Single Class:
+
+java
+Copy
+Edit
+import com.example.animals.Dog;  // Import the Dog class from the com.example.animals package
+Importing All Classes from a Package:
+
+java
+Copy
+Edit
+import com.example.animals.*;  // Import all classes from the com.example.animals package
+Example (Using import):
+java
+Copy
+Edit
+// In file: Main.java
+import com.example.animals.Dog;
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.sound();  // Prints "Barking..."
+    }
+}
+Here, the Dog class from the com.example.animals package is imported so that we can use it in the Main class.
+
+4. Static Imports
+Static imports allow you to access static members (variables or methods) of a class directly, without needing to prefix them with the class name.
+
+Example (Using Static Imports):
+java
+Copy
+Edit
+import static java.lang.Math.PI;
+import static java.lang.Math.sqrt;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Value of PI: " + PI);         // Directly using PI without Math.PI
+        System.out.println("Square root of 16: " + sqrt(16));  // Directly using sqrt() without Math.sqrt()
+    }
+}
+In this example, PI and sqrt() are static members of the Math class, and with static import, we can use them directly without prefixing Math..
+
+Summary of Key Topics:
+Creating and Using Packages: Organizing your classes into packages with the package keyword and using the import statement to use them.
+Access Modifiers: Control visibility with public, private, protected, and default (package-private) modifiers.
+Import Statement: Import specific classes or all classes from a package to avoid fully qualified names.
+Static Imports: Access static members directly from a class without needing to reference the class name.

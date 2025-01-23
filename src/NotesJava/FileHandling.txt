@@ -1,0 +1,232 @@
+Let's explore File Handling in Java! File handling allows Java programs to read from and write to files, enabling persistent data storage. Java provides various classes and methods for working with files, and it supports both byte streams and character streams for different types of file operations.
+
+1. Reading and Writing Files
+Java provides several classes for reading and writing files:
+
+FileWriter and FileReader: Used for writing and reading text files (character-based streams).
+FileInputStream and FileOutputStream: Used for reading and writing binary files (byte-based streams).
+BufferedReader and BufferedWriter: Provide efficient reading and writing by buffering the data.
+Writing to a File (Using FileWriter):
+java
+Copy
+Edit
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            FileWriter writer = new FileWriter("example.txt");
+            writer.write("Hello, Java!");
+            writer.close();
+            System.out.println("File written successfully.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+}
+Explanation:
+
+FileWriter is used for writing text to a file.
+The write() method writes the string to the file, and close() ensures that the file is saved properly.
+Reading from a File (Using FileReader):
+java
+Copy
+Edit
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            FileReader reader = new FileReader("example.txt");
+            int character;
+            while ((character = reader.read()) != -1) {
+                System.out.print((char) character);
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+}
+Explanation:
+
+FileReader reads characters from a file.
+The read() method returns the next character, and -1 indicates the end of the file.
+2. Byte Streams vs Character Streams
+Byte Streams: Handle raw binary data (e.g., images, audio files). Classes like FileInputStream and FileOutputStream are byte-based streams.
+Character Streams: Handle text data (e.g., characters and strings). Classes like FileReader and FileWriter are character-based streams. They automatically handle encoding and decoding of characters.
+When to Use:
+Byte Streams: For non-text files (e.g., .jpg, .mp3, etc.).
+Character Streams: For text-based files (e.g., .txt, .csv, .xml).
+3. The File Class
+The File class is used to represent file and directory pathnames in an abstract manner. It provides methods for creating, deleting, renaming, and checking file properties (e.g., file existence, file length).
+
+Common Methods of File Class:
+exists(): Checks if the file or directory exists.
+createNewFile(): Creates a new file.
+delete(): Deletes the file or directory.
+length(): Returns the size of the file in bytes.
+isDirectory(): Checks if the file object is a directory.
+isFile(): Checks if the file object is a file.
+Example:
+java
+Copy
+Edit
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        File file = new File("example.txt");
+
+        if (file.exists()) {
+            System.out.println("File exists.");
+            System.out.println("File size: " + file.length() + " bytes");
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+}
+4. BufferedReader and BufferedWriter
+BufferedReader: Used for reading text from a file more efficiently by buffering input. This reduces the number of disk reads.
+BufferedWriter: Used for writing text to a file more efficiently by buffering output.
+Reading with BufferedReader:
+java
+Copy
+Edit
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("example.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+}
+Explanation:
+
+readLine() reads one line at a time from the file, making it more efficient for reading text files.
+Writing with BufferedWriter:
+java
+Copy
+Edit
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("example.txt"));
+            writer.write("Hello, BufferedWriter!");
+            writer.newLine();  // Adds a new line
+            writer.write("This is efficient file writing.");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+}
+Explanation:
+
+write() writes text to the file.
+newLine() adds a new line in the file.
+5. Serialization and Deserialization
+Serialization is the process of converting an object into a byte stream so that it can be saved to a file or transferred over a network. Deserialization is the reverse process: converting the byte stream back into an object.
+
+Serializable Interface:
+To make a class serializable, it must implement the Serializable interface (a marker interface with no methods).
+
+Serialization Example:
+java
+Copy
+Edit
+import java.io.*;
+
+class Person implements Serializable {
+    String name;
+    int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person person = new Person("John", 25);
+        
+        try {
+            // Serialize object
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("person.ser"));
+            out.writeObject(person);
+            out.close();
+            System.out.println("Object serialized successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+Explanation:
+
+The Person class implements Serializable so that it can be serialized.
+ObjectOutputStream is used to write the object to a file.
+Deserialization Example:
+java
+Copy
+Edit
+import java.io.*;
+
+class Person implements Serializable {
+    String name;
+    int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // Deserialize object
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream("person.ser"));
+            Person person = (Person) in.readObject();
+            in.close();
+            
+            System.out.println("Object deserialized: " + person.name + ", " + person.age);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
+Explanation:
+
+ObjectInputStream is used to read the object from the file.
+The readObject() method retrieves the object, which is then cast to the appropriate type (Person).
+Summary of Key Topics:
+Reading and Writing Files:
+
+Use FileWriter/FileReader for text files and FileInputStream/FileOutputStream for binary files.
+Byte Streams vs Character Streams:
+
+Byte streams handle binary data, while character streams handle text data.
+File Class:
+
+Represents file and directory pathnames and provides methods for file operations like creation, deletion, and checking file properties.
+BufferedReader and BufferedWriter:
+
+Provide efficient reading and writing by buffering data.
+Serialization and Deserialization:
+
+Serialization converts an object into a byte stream, and deserialization converts the byte stream back to an object.

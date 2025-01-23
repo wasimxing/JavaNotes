@@ -1,0 +1,160 @@
+1. Types of Exceptions
+There are two main types of exceptions in Java:
+
+Checked Exceptions:
+These are exceptions that must be either caught or declared to be thrown in the method signature. They are typically exceptions that occur due to external factors like IO issues, database connection problems, etc.
+Examples: IOException, SQLException, ClassNotFoundException
+Unchecked Exceptions:
+These exceptions are not required to be explicitly caught or declared. They are usually programming bugs, such as accessing an invalid index in an array, dividing by zero, or null pointer access.
+Examples: NullPointerException, ArrayIndexOutOfBoundsException, ArithmeticException
+Unchecked exceptions extend RuntimeException.
+
+2. try, catch, and finally
+The try, catch, and finally blocks are used to handle exceptions in Java.
+
+try block: Code that might throw an exception is placed inside the try block.
+catch block: If an exception occurs in the try block, the catch block is executed to handle the exception.
+finally block: Code inside the finally block is always executed, regardless of whether an exception occurs or not. This is typically used for cleanup tasks like closing file streams or database connections.
+Example (try-catch-finally):
+java
+Copy
+Edit
+public class Main {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 0;  // This will cause an ArithmeticException
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Cannot divide by zero!");
+        } finally {
+            System.out.println("This will always be executed.");
+        }
+    }
+}
+Output:
+
+vbnet
+Copy
+Edit
+Error: Cannot divide by zero!
+This will always be executed.
+Here:
+
+The exception is caught and handled in the catch block.
+The finally block is executed regardless of the exception.
+3. throw and throws Keywords
+throw: The throw keyword is used to explicitly throw an exception.
+throws: The throws keyword is used in the method signature to indicate that a method might throw one or more exceptions.
+Using throw:
+When you want to manually throw an exception, you use the throw keyword.
+
+java
+Copy
+Edit
+public class Main {
+    public static void main(String[] args) {
+        try {
+            validateAge(15);  // This will throw an exception
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void validateAge(int age) {
+        if (age < 18) {
+            throw new IllegalArgumentException("Age must be 18 or older.");
+        }
+    }
+}
+Output:
+
+Copy
+Edit
+Age must be 18 or older.
+Here:
+
+We manually throw an exception when the age is less than 18.
+Using throws:
+The throws keyword is used to declare that a method may throw an exception. This means the caller of the method is responsible for handling the exception.
+
+java
+Copy
+Edit
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            readFile("example.txt");  // This may throw a checked exception
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the file.");
+        }
+    }
+
+    public static void readFile(String fileName) throws IOException {
+        FileReader file = new FileReader(fileName);
+        BufferedReader fileInput = new BufferedReader(file);
+        fileInput.readLine();
+        fileInput.close();
+    }
+}
+Here:
+
+The readFile method declares that it may throw an IOException using the throws keyword.
+The caller (main method) catches and handles the exception.
+4. Creating Custom Exceptions
+Sometimes, you may need to create your own exception classes to handle specific errors in your application. To create a custom exception, you can extend the Exception class (for checked exceptions) or RuntimeException (for unchecked exceptions).
+
+Example (Creating a Custom Exception):
+java
+Copy
+Edit
+// Custom checked exception
+class InvalidAgeException extends Exception {
+    public InvalidAgeException(String message) {
+        super(message);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            checkAge(15);  // This will throw our custom exception
+        } catch (InvalidAgeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void checkAge(int age) throws InvalidAgeException {
+        if (age < 18) {
+            throw new InvalidAgeException("Age must be 18 or older to register.");
+        }
+        System.out.println("Age is valid.");
+    }
+}
+Output:
+
+arduino
+Copy
+Edit
+Age must be 18 or older to register.
+Here:
+
+We created a custom exception InvalidAgeException that extends Exception.
+The checkAge method throws this custom exception if the age is less than 18.
+Summary of Key Topics:
+Types of Exceptions:
+
+Checked exceptions: Must be handled (e.g., IOException, SQLException).
+Unchecked exceptions: Don't need to be explicitly handled (e.g., NullPointerException, ArithmeticException).
+try, catch, finally:
+
+try: Contains code that may throw an exception.
+catch: Handles the exception if one occurs.
+finally: Executes cleanup code, regardless of whether an exception occurred or not.
+throw and throws:
+
+throw: Used to explicitly throw an exception.
+throws: Declares the exceptions that a method may throw.
+Creating Custom Exceptions:
+
+You can define custom exceptions by extending Exception (for checked) or RuntimeException (for unchecked).

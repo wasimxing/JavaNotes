@@ -1,0 +1,162 @@
+1. The String Class and Its Methods
+In Java, a string is an object of the String class. This class provides many useful methods for string manipulation. Some of the most commonly used methods are:
+
+length(): Returns the length of the string.
+charAt(int index): Returns the character at the specified index.
+substring(int beginIndex): Returns a new string that starts from beginIndex and goes till the end of the string.
+substring(int beginIndex, int endIndex): Returns a new string starting from beginIndex and ending at endIndex - 1.
+equals(Object obj): Compares the string with another string (case-sensitive).
+equalsIgnoreCase(String anotherString): Compares two strings ignoring case differences.
+toUpperCase(): Converts all characters to uppercase.
+toLowerCase(): Converts all characters to lowercase.
+contains(CharSequence sequence): Checks if a string contains a specified sequence of characters.
+indexOf(String str): Returns the index of the first occurrence of the specified string.
+replace(CharSequence old, CharSequence new): Replaces occurrences of a specified sequence of characters in the string.
+Example:
+java
+Copy
+Edit
+public class Main {
+    public static void main(String[] args) {
+        String text = "Hello, World!";
+
+        System.out.println("Length: " + text.length());              // 13
+        System.out.println("Char at index 0: " + text.charAt(0));     // H
+        System.out.println("Substring: " + text.substring(7));        // World!
+        System.out.println("Substring: " + text.substring(0, 5));     // Hello
+        System.out.println("To Upper Case: " + text.toUpperCase());   // HELLO, WORLD!
+        System.out.println("To Lower Case: " + text.toLowerCase());   // hello, world!
+        System.out.println("Contains 'World': " + text.contains("World")); // true
+        System.out.println("Index of 'World': " + text.indexOf("World"));  // 7
+    }
+}
+2. String Immutability
+In Java, strings are immutable. This means once a String object is created, its value cannot be changed. If you perform any operation that modifies the string, a new String object is created.
+
+Example:
+java
+Copy
+Edit
+public class Main {
+    public static void main(String[] args) {
+        String str = "Hello";
+        str = str + " World";  // Concatenation creates a new String object
+        System.out.println(str);  // Output: Hello World
+    }
+}
+In this example:
+
+The string str is changed by concatenation.
+However, immutability ensures that the original "Hello" string remains unchanged, and a new string "Hello World" is created.
+Why is String Immutable?
+Security: Immutable objects are safer when shared across different parts of the program.
+Hashcode Caching: Strings are often used as keys in hashmaps, and their immutability ensures their hashcode remains constant.
+Efficiency: Since strings are immutable, they can be shared (interned) and reused.
+3. StringBuilder and StringBuffer
+StringBuilder and StringBuffer are mutable classes used to perform string manipulation in a more efficient manner than String when you need to perform many modifications to a string.
+
+StringBuilder: Used for single-threaded environments. It's faster than StringBuffer because it doesn't have synchronized methods.
+StringBuffer: Used for thread-safe environments. It’s slower than StringBuilder because it’s synchronized to support thread safety.
+Both StringBuilder and StringBuffer offer similar methods:
+
+append(): Appends the specified string to the current string.
+insert(): Inserts a specified string at a given index.
+delete(): Deletes a substring from the current string.
+reverse(): Reverses the string.
+Example:
+java
+Copy
+Edit
+public class Main {
+    public static void main(String[] args) {
+        // Using StringBuilder
+        StringBuilder sb = new StringBuilder("Hello");
+        sb.append(" World");
+        sb.insert(6, "Beautiful ");
+        sb.delete(6, 16);
+        sb.reverse();
+        System.out.println(sb);  // Output: dlroW olleH
+    }
+}
+4. String Operations
+Here are some common string operations in Java:
+
+Concatenation: Joining strings together.
+
+java
+Copy
+Edit
+String str1 = "Hello";
+String str2 = "World";
+String result = str1 + " " + str2;  // Concatenates strings
+System.out.println(result);  // Output: Hello World
+Comparison: Comparing strings using equals(), equalsIgnoreCase(), and compareTo().
+
+java
+Copy
+Edit
+String str1 = "Hello";
+String str2 = "hello";
+System.out.println(str1.equals(str2));  // false
+System.out.println(str1.equalsIgnoreCase(str2));  // true
+Splitting: Splitting a string based on a delimiter.
+
+java
+Copy
+Edit
+String str = "apple,banana,orange";
+String[] fruits = str.split(",");
+for (String fruit : fruits) {
+    System.out.println(fruit);
+}
+Output:
+
+Copy
+Edit
+apple
+banana
+orange
+5. Regular Expressions (Pattern and Matcher Classes)
+Regular expressions (regex) are used for searching, matching, and manipulating strings based on patterns.
+
+Pattern Class: Represents a compiled regular expression.
+Matcher Class: Performs the actual search and matching.
+Common Regex Operations:
+matches(): Checks if the entire string matches the regex.
+find(): Finds the next substring that matches the regex.
+group(): Returns the matched substring.
+Example (Using Regular Expressions):
+java
+Copy
+Edit
+import java.util.regex.*;
+
+public class Main {
+    public static void main(String[] args) {
+        String text = "The quick brown fox";
+        
+        // Pattern to match words starting with 'b'
+        Pattern pattern = Pattern.compile("\\b[bB]\\w+");
+        Matcher matcher = pattern.matcher(text);
+
+        while (matcher.find()) {
+            System.out.println("Found: " + matcher.group());
+        }
+    }
+}
+Output:
+
+makefile
+Copy
+Edit
+Found: brown
+Here:
+
+The regex \\b[bB]\\w+ is used to match words starting with the letter 'b' (case-insensitive).
+The find() method is used to search through the string.
+Summary of Key Topics:
+String Class: Provides many useful methods like length(), charAt(), substring(), etc., for string manipulation.
+String Immutability: Strings in Java are immutable, meaning their values cannot be changed once created.
+StringBuilder and StringBuffer: Mutable alternatives to String for efficient string modifications. Use StringBuilder for single-threaded environments and StringBuffer for thread-safe environments.
+String Operations: Common operations like concatenation, comparison, splitting, and manipulation.
+Regular Expressions: Used for pattern matching and string processing using the Pattern and Matcher classes.

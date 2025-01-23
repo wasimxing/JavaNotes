@@ -1,0 +1,291 @@
+1. Introduction to OOP Principles
+There are four fundamental principles in OOP:
+
+Encapsulation
+Abstraction
+Inheritance
+Polymorphism
+Let’s dive deeper into each of these principles.
+
+2. Encapsulation
+Encapsulation is the concept of bundling the data (variables) and methods that operate on the data into a single unit called a class. It also involves restricting access to some of the object's components, which is why we use access modifiers (private, protected, public) to control visibility.
+
+Private variables prevent direct access to them from outside the class.
+Public methods are provided to access and modify those private variables (getter and setter methods).
+Example (Encapsulation in Action):
+java
+Copy
+Edit
+public class Person {
+    private String name;  // Private variable
+    private int age;      // Private variable
+    
+    // Getter method for name
+    public String getName() {
+        return name;
+    }
+    
+    // Setter method for name
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    // Getter method for age
+    public int getAge() {
+        return age;
+    }
+    
+    // Setter method for age
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person person = new Person();
+        person.setName("John");
+        person.setAge(30);
+        
+        System.out.println(person.getName()); // Prints "John"
+        System.out.println(person.getAge());  // Prints 30
+    }
+}
+In this example, the Person class encapsulates the data (name and age) and provides public getter and setter methods to access and modify them.
+
+3. Abstraction
+Abstraction is the concept of hiding the complex implementation details and showing only the essential features. In Java, abstraction is achieved using:
+
+Abstract classes: Classes that cannot be instantiated and may contain abstract methods (methods without implementation).
+Interfaces: A contract that specifies the methods a class must implement but provides no implementation.
+Example (Abstraction with an Abstract Class):
+java
+Copy
+Edit
+abstract class Animal {
+    // Abstract method (no implementation)
+    public abstract void sound();
+}
+
+class Dog extends Animal {
+    // Providing implementation of the abstract method
+    public void sound() {
+        System.out.println("Woof");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal myDog = new Dog();
+        myDog.sound(); // Prints "Woof"
+    }
+}
+In this example, the Animal class is abstract, and the sound() method is abstract. The Dog class provides a concrete implementation of the sound() method.
+
+4. Inheritance
+Inheritance allows one class to inherit the fields and methods of another class. It promotes code reusability. In Java, inheritance is implemented using the extends keyword.
+
+Parent class (superclass): The class being inherited from.
+Child class (subclass): The class that inherits from the parent class.
+Example (Inheritance):
+java
+Copy
+Edit
+class Animal {
+    public void eat() {
+        System.out.println("Eating...");
+    }
+}
+
+class Dog extends Animal {
+    public void bark() {
+        System.out.println("Barking...");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.eat();  // Inherited method from Animal class
+        dog.bark(); // Dog's own method
+    }
+}
+Here, the Dog class inherits the eat() method from the Animal class, so it can call it along with its own method bark().
+
+5. Polymorphism
+Polymorphism allows objects of different classes to be treated as objects of a common superclass. It can be achieved in two ways:
+
+Method Overloading: Multiple methods with the same name but different parameters.
+Method Overriding: A subclass provides its own specific implementation of a method defined in the superclass.
+Example (Polymorphism - Method Overriding):
+java
+Copy
+Edit
+class Animal {
+    public void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    public void sound() {
+        System.out.println("Woof");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal myAnimal = new Animal();
+        Animal myDog = new Dog();
+        
+        myAnimal.sound(); // Prints "Animal makes a sound"
+        myDog.sound();    // Prints "Woof"
+    }
+}
+In this example, the sound() method is overridden in the Dog class. Even though myDog is of type Animal, it calls the overridden method in the Dog class, showing runtime polymorphism.
+
+6. Classes and Objects
+Class: A blueprint or template for creating objects.
+Object: An instance of a class.
+Example (Class and Object):
+java
+Copy
+Edit
+class Car {
+    String make;
+    String model;
+    
+    public void start() {
+        System.out.println("Car started");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car car1 = new Car(); // Create an object of the Car class
+        car1.make = "Toyota";
+        car1.model = "Corolla";
+        car1.start();  // Calls method of the car object
+    }
+}
+In this example, Car is a class, and car1 is an object (instance) of that class.
+
+7. this Keyword
+The this keyword refers to the current object in a method or constructor. It is often used to differentiate between instance variables and parameters when they have the same name.
+
+Example (Using this):
+java
+Copy
+Edit
+class Person {
+    String name;
+    
+    public Person(String name) {
+        this.name = name;  // Refers to the instance variable
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person p = new Person("John");
+        System.out.println(p.name); // Prints "John"
+    }
+}
+In this example, this.name refers to the instance variable name, while the parameter name is used to initialize it.
+
+8. Constructor and Constructor Overloading
+A constructor is a special method that is called when an object is created. It initializes the object.
+
+Constructor Overloading: You can have multiple constructors with different parameters to initialize objects in various ways.
+Example (Constructor and Overloading):
+java
+Copy
+Edit
+class Car {
+    String make;
+    String model;
+    
+    // Constructor with no parameters
+    public Car() {
+        make = "Unknown";
+        model = "Unknown";
+    }
+    
+    // Constructor with parameters
+    public Car(String make, String model) {
+        this.make = make;
+        this.model = model;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car car1 = new Car();  // Calls constructor with no parameters
+        Car car2 = new Car("Toyota", "Corolla");  // Calls constructor with parameters
+        
+        System.out.println(car1.make + " " + car1.model);  // Prints Unknown Unknown
+        System.out.println(car2.make + " " + car2.model);  // Prints Toyota Corolla
+    }
+}
+Here, the Car class has two constructors: one that initializes with default values and one that takes parameters.
+
+9. Static Members (Variables and Methods)
+Static variables are shared among all instances of a class. They are not tied to a specific object.
+Static methods can be called without creating an object of the class.
+Example (Static Variables and Methods):
+java
+Copy
+Edit
+class Counter {
+    static int count = 0;  // Static variable
+    
+    public static void increment() {  // Static method
+        count++;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Counter.increment();  // No need to create an object
+        System.out.println(Counter.count);  // Prints 1
+    }
+}
+In this example, the count variable is static, so it is shared by all instances of Counter. The increment() method is also static, so it can be called without creating an object.
+
+10. Nested and Inner Classes
+Nested Classes: A class defined inside another class. It can be static or non-static.
+Inner Classes: Non-static nested classes that can access instance variables and methods of the outer class.
+Example (Inner Class):
+java
+Copy
+Edit
+class OuterClass {
+    private int outerVar = 10;
+    
+    class InnerClass {
+        public void display() {
+            System.out.println("Outer variable: " + outerVar);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        OuterClass outer = new OuterClass();
+        OuterClass.InnerClass inner = outer.new InnerClass();  // Create an inner class object
+        inner.display();  // Prints "Outer variable: 10"
+    }
+}
+In this example, InnerClass can access the private variable outerVar of the outer class OuterClass.
+
+Summary of Key Topics:
+Encapsulation: Wrapping data and methods in a single unit, restricting access using access modifiers.
+Abstraction: Hiding implementation details and exposing only essential features via abstract classes or interfaces.
+Inheritance: Reusing code from a parent class in a child class, allowing extension of functionality.
+Polymorphism: Using one interface to represent multiple implementations, achieved via method overloading or overriding.
+Classes and Objects: A class defines an object blueprint, and objects are instances of the class.
+this Keyword: Refers to the current instance of the class.
+Constructor Overloading: Defining multiple constructors to initialize objects in different ways.
+Static Members: Shared variables and methods that belong to the class itself, not individual objects.
+Nested and Inner Classes: Classes defined within other classes, with special access to the outer class.
