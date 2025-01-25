@@ -57,3 +57,193 @@ git push -u origin main
 
 9. Verify on GitHub
 Go to your GitHub repository page. You should now see your files uploaded to GitHub!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To create a repository on GitHub using Git Bash:
+
+Set up Git:
+
+Install Git.
+Configure with your username and email using:
+arduino
+Copy
+Edit
+git config --global user.name "Your Name"
+git config --global user.email "youremail@example.com"
+Create Project Directory:
+
+Navigate to your desired location and create a project folder:
+perl
+Copy
+Edit
+mkdir my-project
+cd my-project
+Initialize Git Repository:
+
+Run:
+csharp
+Copy
+Edit
+git init
+Create Repository on GitHub:
+
+Log in to GitHub, create a new repository (without README), and copy the repository URL.
+Add GitHub Remote:
+
+Link the local repository to GitHub:
+csharp
+Copy
+Edit
+git remote add origin https://github.com/your-username/my-project.git
+Add Files:
+
+Add files to the repository:
+csharp
+Copy
+Edit
+git add .
+Commit Changes:
+
+Commit the files:
+sql
+Copy
+Edit
+git commit -m "Initial commit"
+Push to GitHub:
+
+Push to GitHub:
+perl
+Copy
+Edit
+git push -u origin master
+Verify:
+
+Check your GitHub repository page to confirm the upload.
+
+
+
+
+
+
+You said:
+change branch from main or master
+ChatGPT said:
+ChatGPT
+To change the default branch from master or main to another name, follow these steps:
+
+1. Create a New Branch:
+If you want to create a new branch, run:
+arduino
+Copy
+Edit
+git checkout -b new-branch-name
+This will create and switch to the new branch.
+2. Push the New Branch to GitHub:
+Push the new branch to GitHub:
+arduino
+Copy
+Edit
+git push -u origin new-branch-name
+3. Change Default Branch on GitHub:
+Go to your GitHub repository page.
+Click on Settings.
+In the Branches section, set your new branch as the default.
+You can then delete the old master or main branch if you no longer need it.
+4. Delete the Old Branch (Optional):
+To delete the old branch locally:
+sql
+Copy
+Edit
+git branch -d old-branch-name
+To delete the old branch remotely:
+perl
+Copy
+Edit
+git push origin --delete old-branch-name
+That should change your default branch and clean up the old one.
+
+
+
+
+
+
+
+You said:
+rebase
+ChatGPT said:
+ChatGPT
+Rebasing in Git is a way to integrate changes from one branch into another. It rewrites the commit history to create a linear progression of commits. Here’s how to use it:
+
+Basic Rebase Workflow
+Switch to the Branch You Want to Rebase: First, make sure you're on the branch you want to rebase. For example, if you want to rebase feature-branch onto main:
+
+Copy
+Edit
+git checkout feature-branch
+Rebase onto the Target Branch: Then, rebase your branch onto main (or another branch):
+
+css
+Copy
+Edit
+git rebase main
+This takes the changes from feature-branch and re-applies them on top of the latest commit of main.
+
+Handling Conflicts During Rebase
+If there are conflicts during the rebase, Git will stop and let you resolve them.
+Resolve the conflict by editing the conflicted files.
+After resolving conflicts, use:
+csharp
+Copy
+Edit
+git add <file-with-conflict>
+Repeat this for all conflicted files.
+Once all conflicts are resolved, continue the rebase:
+kotlin
+Copy
+Edit
+git rebase --continue
+Aborting a Rebase
+If you want to cancel the rebase and return to the state before you started:
+c
+Copy
+Edit
+git rebase --abort
+Interactive Rebase
+Interactive rebasing allows you to reorder, squash, or edit commits. To start an interactive rebase:
+
+css
+Copy
+Edit
+git rebase -i HEAD~n
+Where n is the number of commits you want to go back.
+
+This will open an editor where you can choose actions for each commit (e.g., pick, squash, reword).
+After editing and saving, Git will rebase with your changes.
+Push Rebased Changes
+After a rebase, if you've already pushed the branch before, you'll need to force push:
+
+css
+Copy
+Edit
+git push --force
+Note: Be careful with --force as it rewrites history. Make sure no one else is working on the same branch before using it.
+
+That's a basic overview of how to perform a rebase. It can be a powerful tool, but it's important to use it carefully to avoid rewriting history in collaborative projects
