@@ -3,26 +3,23 @@ To create a repository on GitHub using Git Bash, follow these steps:
 1. Set Up Git on Your Local Machine
 Install Git if you haven't already: Download Git
 Configure Git with your username and email:
-bash
-Copy
-Edit
 git config --global user.name "Your Name"
 git config --global user.email "youremail@example.com"
+
+
 2. Create a New Directory for Your Project (if needed)
 Open Git Bash.
 Navigate to the location where you want your repository to be.
 Create a new directory:
-bash
-Copy
-Edit
 mkdir my-project
 cd my-project
+
+
 3. Initialize a Git Repository
 Inside your project directory, initialize a new git repository:
-bash
-Copy
-Edit
 git init
+
+
 4. Create a New Repository on GitHub
 Go to GitHub and log in.
 Click the + icon in the top-right corner and select New repository.
@@ -31,38 +28,32 @@ Optionally, add a description.
 Leave it public or private, depending on your preference.
 Do not initialize with a README (since you're setting up an existing project).
 Click Create repository.
+
+
 5. Add GitHub Remote to Your Local Repository
 Once the GitHub repository is created, you’ll be shown the repository URL (e.g., https://github.com/your-username/my-project.git).
 Go back to Git Bash and link the remote repository:
-bash
-Copy
-Edit
 git remote add origin https://github.com/your-username/my-project.git
+
+
 6. Add Files to the Repository
 Add your project files (if you haven't already).
 Stage the files to be committed:
-bash
-Copy
-Edit
 git add .
 (This stages all files in the current directory.)
+
+
 7. Commit Your Changes
 Commit the staged files:
-bash
-Copy
-Edit
 git commit -m "Initial commit"
+
+
 8. Push the Code to GitHub
 Push your code to the GitHub repository:
-bash
-Copy
-Edit
 git push -u origin master
 If you are using a different branch (e.g., main), replace master with the appropriate branch name:
-
-bash
-Copy
-Edit
 git push -u origin main
+
+
 9. Verify on GitHub
 Go to your GitHub repository page. You should now see your files uploaded to GitHub!

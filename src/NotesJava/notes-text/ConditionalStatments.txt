@@ -6,9 +6,6 @@ The if statement is used to test a condition and execute a block of code if the 
 
 Syntax:
 
-java
-Copy
-Edit
 if (condition) {
     // Block of code to be executed if condition is true
 } else if (anotherCondition) {
@@ -16,11 +13,8 @@ if (condition) {
 } else {
     // Block of code if all conditions are false
 }
-Example:
 
-java
-Copy
-Edit
+Example:
 int age = 20;
 
 if (age >= 18) {
@@ -28,18 +22,14 @@ if (age >= 18) {
 } else {
     System.out.println("You are a minor.");
 }
-In this example:
 
+In this example:
 If age >= 18, it will print "You are an adult."
 Otherwise, it will print "You are a minor."
 switch case
 The switch statement is used to select one of many code blocks to be executed. It’s useful when you have multiple possible values for a variable and want to check them against specific cases.
 
 Syntax:
-
-java
-Copy
-Edit
 switch (expression) {
     case value1:
         // Code to execute if expression equals value1
@@ -50,11 +40,8 @@ switch (expression) {
     default:
         // Code to execute if no case matches
 }
-Example:
 
-java
-Copy
-Edit
+Example:
 int day = 3;
 String dayName;
 
@@ -78,20 +65,11 @@ Looping statements are used to repeatedly execute a block of code as long as a c
 
 for loop
 The for loop is used when the number of iterations is known beforehand.
-
 Syntax:
-
-java
-Copy
-Edit
 for (initialization; condition; update) {
     // Block of code to be executed
 }
 Example:
-
-java
-Copy
-Edit
 for (int i = 0; i < 5; i++) {
     System.out.println(i);  // Prints 0, 1, 2, 3, 4
 }
@@ -101,18 +79,10 @@ while loop
 The while loop is used when you don’t know how many times you need to iterate, but you want to loop as long as a condition is true.
 
 Syntax:
-
-java
-Copy
-Edit
 while (condition) {
     // Block of code to be executed
 }
 Example:
-
-java
-Copy
-Edit
 int i = 0;
 while (i < 5) {
     System.out.println(i);  // Prints 0, 1, 2, 3, 4
@@ -124,18 +94,10 @@ do-while loop
 The do-while loop is similar to the while loop, but the condition is checked after the block of code is executed, meaning the block of code will always execute at least once.
 
 Syntax:
-
-java
-Copy
-Edit
 do {
     // Block of code to be executed
 } while (condition);
 Example:
-
-java
-Copy
-Edit
 int i = 0;
 do {
     System.out.println(i);  // Prints 0, 1, 2, 3, 4
@@ -147,18 +109,11 @@ Enhanced for loop (for-each loop)
 The enhanced for loop is used to iterate over arrays or collections (like List, Set, etc.) in a more readable way.
 
 Syntax:
-
-java
-Copy
-Edit
 for (dataType item : collection) {
     // Block of code to be executed for each item
 }
-Example:
 
-java
-Copy
-Edit
+Example:
 int[] numbers = {1, 2, 3, 4, 5};
 for (int num : numbers) {
     System.out.println(num);  // Prints 1, 2, 3, 4, 5
@@ -172,10 +127,6 @@ break
 The break statement is used to exit a loop or switch case prematurely.
 
 Example:
-
-java
-Copy
-Edit
 for (int i = 0; i < 10; i++) {
     if (i == 5) {
         break;  // Exits the loop when i equals 5
@@ -183,9 +134,6 @@ for (int i = 0; i < 10; i++) {
     System.out.println(i);
 }
 Output:
-
-Copy
-Edit
 0
 1
 2
@@ -195,10 +143,6 @@ continue
 The continue statement is used to skip the current iteration of a loop and proceed with the next iteration.
 
 Example:
-
-java
-Copy
-Edit
 for (int i = 0; i < 5; i++) {
     if (i == 3) {
         continue;  // Skips the iteration when i equals 3
@@ -206,9 +150,6 @@ for (int i = 0; i < 5; i++) {
     System.out.println(i);
 }
 Output:
-
-Copy
-Edit
 0
 1
 2
@@ -217,10 +158,6 @@ return
 The return statement is used to exit a method and optionally return a value.
 
 Example:
-
-java
-Copy
-Edit
 public int add(int a, int b) {
     return a + b;  // Returns the sum of a and b
 }
